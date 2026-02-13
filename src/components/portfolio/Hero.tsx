@@ -16,7 +16,7 @@ const Hero = () => {
         <div className="flex-1 text-center lg:text-left">
           <p className="text-primary font-medium mb-3 animate-fade-in">Hello, I'm</p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in-up">
-            Juan Dela Cruz
+            John Patrick S. Robles
           </h1>
           <p className="text-lg sm:text-xl text-primary font-medium mb-4 animate-fade-in-up animation-delay-200">
             BSIT Graduate | Aspiring Software Developer
