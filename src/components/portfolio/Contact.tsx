@@ -6,17 +6,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  { icon: Mail, label: "juandelacruz@email.com", href: "mailto:juandelacruz@email.com" },
-  { icon: Phone, label: "+63 9XX XXX XXXX", href: "tel:+639XXXXXXXXX" },
-  { icon: Linkedin, label: "linkedin.com/in/juandelacruz", href: "#" },
-  { icon: Github, label: "github.com/juandelacruz", href: "#" },
-  { icon: Globe, label: "juandelacruz.dev", href: "#" },
+  { icon: Mail, label: "johnpatrickrobles143@gmail.com", href: "mailto:johnpatrickrobles143@gmail.com" },
+  { icon: Phone, label: "+63 906 364 6349", href: "tel:+639063646349" },
+  { icon: Linkedin, label: "linkedin.com/in/John Patrick Robles", href: "www.linkedin.com/in/john-patrick-robles-47174135b" },
+  { icon: Github, label: "github.com/johnpatrickrobles", href: "https://github.com/Pipak555" },
+  { icon: Globe, label: "johnpatrickrobles.dev", href: "#" },
 ];
 
 const Contact = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.15 });
@@ -24,10 +25,34 @@ const Contact = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mwvnlnvd', { 
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast({ title: "Message Sent!", description: "Thank you for reaching out. I'll get back to you soon." });
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({ title: "Error", description: "Failed to send message. Please try again later.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,14 +65,14 @@ const Contact = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid sm:grid-cols-2 gap-4">
-              <Input placeholder="Your Name" required />
-              <Input type="email" placeholder="Your Email" required />
+              <Input name="name" placeholder="Your Name" required />
+              <Input name="email" type="email" placeholder="Your Email" required />
             </div>
-            <Input placeholder="Subject" required />
-            <Textarea placeholder="Your Message" rows={5} required />
-            <Button type="submit" size="lg" className="gap-2 w-full sm:w-auto">
+            <Input name="subject" placeholder="Subject" required />
+            <Textarea name="message" placeholder="Your Message" rows={5} required />
+            <Button type="submit" size="lg" className="gap-2 w-full sm:w-auto" disabled={isSubmitting}>
               <Send className="h-4 w-4" />
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>
 

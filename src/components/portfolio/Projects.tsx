@@ -15,6 +15,7 @@ const projects = [
     category: "Web",
     demoUrl: "https://your-unique-demo-url-for-student-system.com",  // Replace with actual demo URL
     githubUrl: "https://github.com/your-repo-for-student-system",   // Replace with actual GitHub URL
+    image: "/path/to/student-system-screenshot.jpg",  // Add your image path here
   },
   {
     title: "Mojo Dojo Casa House — Experiences & Bookings",
@@ -27,6 +28,7 @@ const projects = [
     category: "Web",
     demoUrl: "https://mojo-dojo-casa-house-80845.web.app/",
     githubUrl: "https://github.com/Pipak555/Pipak555-Mag-cocommit-na-talga",
+    image: "src\\images\\Mojo.png",  
   },
   {
     title: "Network Monitoring Dashboard",
@@ -39,6 +41,7 @@ const projects = [
     category: "Desktop",
     demoUrl: "https://your-unique-demo-url-for-network-dashboard.com",
     githubUrl: "https://github.com/your-repo-for-network-dashboard",
+    image: "/path/to/network-dashboard-screenshot.jpg",  
   },
   {
     title: "BSU Bustos Student Handbook App",
@@ -51,6 +54,7 @@ const projects = [
     category: "Educational",
     demoUrl: "https://your-demo-url-for-student-handbook.com",
     githubUrl: "https://github.com/Pipak555/Bulacan-State-University-Bustos-Campus-Student-Handbook",
+    image: "src\\images\\App.png",  
   },
 ];
 
@@ -61,6 +65,8 @@ const Projects = () => {
   const [visible, setVisible] = useState(false);
   const [filter, setFilter] = useState("All");
   const [expandedIdx, setExpandedIdx] = useState<Set<number>>(new Set());  // Changed to Set<number> for multiple expansions
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.1 });
@@ -100,10 +106,16 @@ const Projects = () => {
                   }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                {/* Screenshot placeholder */}
-                <div className="h-48 bg-gradient-to-br from-navy/80 to-navy-light flex items-center justify-center">
-                  <span className="text-primary/60 text-sm font-medium">Project Screenshot</span>
-                </div>
+                {/* Project Image */}
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-48 object-cover cursor-pointer"
+                  onClick={() => {
+                    setSelectedImage(project.image);
+                    setModalOpen(true);
+                  }}
+                />
 
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-2">
@@ -161,6 +173,27 @@ const Projects = () => {
           })}
         </div>
       </div>
+
+      {/* Modal for full-size image */}
+      {modalOpen && selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          onClick={() => setModalOpen(false)}
+        >
+          <img
+            src={selectedImage}
+            alt="Full size screenshot"
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300"
+            onClick={() => setModalOpen(false)}
+          >
+            ×
+          </button>
+        </div>
+      )}
     </section>
   );
 };
