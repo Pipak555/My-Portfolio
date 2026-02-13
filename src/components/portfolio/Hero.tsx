@@ -6,7 +6,7 @@ const Hero = () => {
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
+    >git
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy dark:from-navy dark:via-navy-light dark:to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(var(--electric)/0.15),transparent_60%)]" />
