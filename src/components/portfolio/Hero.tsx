@@ -6,7 +6,7 @@ const Hero = () => {
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >git
+    >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy dark:from-navy dark:via-navy-light dark:to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(var(--electric)/0.15),transparent_60%)]" />
@@ -50,8 +50,13 @@ const Hero = () => {
         {/* Avatar */}
         <div className="flex-shrink-0 animate-fade-in animation-delay-400">
           <div className="w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-br from-primary/30 to-primary/5 border-2 border-primary/20 flex items-center justify-center">
-            <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-navy-light flex items-center justify-center text-5xl sm:text-6xl text-primary font-bold">
-              JDC
+            <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-navy-light flex items-center justify-center">
+              {/* Replace "JDC" with an image */}
+              <img
+                src="src/images/profile.jpg"  // Update this path to your image (e.g., '/profile.jpg' if in public folder, or import it)
+                alt="Profile picture of John Patrick S. Robles"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
         </div>
