@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Achievements", href: "#achievements" },
-  { label: "Contact", href: "#contact" },
-];
+import { navLinks } from "@/data/portfolio-data";
+import { personalInfo } from "@/data/portfolio-data";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
