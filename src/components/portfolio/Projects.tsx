@@ -1,28 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Image } from "@/components/ui/Image";
 import { projects, projectFilters, projectContent, sectionTitles } from "@/data/portfolio-data";
 
 const Projects = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [filter, setFilter] = useState("All");
   const [expandedIdx, setExpandedIdx] = useState<Set<number>>(new Set());
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.1 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <section id="projects" ref={ref} className="py-20 bg-secondary/30">
-      <div className={`container mx-auto px-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`container mx-auto px-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">{sectionTitles.projects}</h2>
         <div className="w-16 h-1 bg-primary mx-auto mb-8 rounded-full" />
 
@@ -46,7 +41,7 @@ const Projects = () => {
             return (
               <div
                 key={project.title}
-                className={`bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-xl transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                className={`bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 hover:shadow-xl transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >

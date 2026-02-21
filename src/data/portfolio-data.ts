@@ -1,11 +1,38 @@
 // Centralized portfolio data
 // All content should be managed from this file
 
+import type {
+  PersonalInfo,
+  SectionTitles,
+  HeroContent,
+  FormContent,
+  ResumeContent,
+  FooterContent,
+  SkillCategory,
+  SkillIconSlug,
+  Project,
+  ProjectFilter,
+  ProjectContent,
+  ExperienceItem,
+  Achievement,
+  Strength,
+  AboutContent,
+  ResumeHighlight,
+  ContactInfo,
+  SocialLink,
+  NavLink,
+} from "@/types/portfolio";
+
+// React Icons - Simple Icons (Si) and Lucide React (Lu) for icons not in Si
+import { SiPython, SiCplusplus, SiJavascript, SiTypescript, SiPhp, SiHtml5, SiCss3, SiReact, SiNodedotjs, SiTailwindcss, SiBootstrap, SiMysql, SiPostgresql, SiMongodb, SiFirebase, SiGit, SiGithub, SiFigma, SiPostman, SiDocker, SiJira, SiLinux, SiApple } from "react-icons/si";
+import { LuFileCode, LuCode, LuMonitor } from "react-icons/lu";
+import type { IconType } from "react-icons";
+
 // ============================================
 // PERSONAL INFORMATION
 // ============================================
 
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
   name: "John Patrick S. Robles",
   title: "BSIT Graduate | Aspiring Software Developer",
   tagline: "Transforming ideas into elegant digital solutions. Passionate about building software that makes a difference.",
@@ -21,7 +48,7 @@ export const personalInfo = {
 // SECTION TITLES
 // ============================================
 
-export const sectionTitles = {
+export const sectionTitles: SectionTitles = {
   about: "About Me",
   skills: "Technical Skills",
   projects: "Projects",
@@ -35,7 +62,7 @@ export const sectionTitles = {
 // HERO SECTION
 // ============================================
 
-export const heroContent = {
+export const heroContent: HeroContent = {
   greeting: "Hello, I'm",
   viewProjects: "View Projects",
   downloadResume: "Download Resume",
@@ -46,7 +73,7 @@ export const heroContent = {
 // FORM CONTENT
 // ============================================
 
-export const formContent = {
+export const formContent: FormContent = {
   namePlaceholder: "Your Name",
   emailPlaceholder: "Your Email",
   subjectPlaceholder: "Subject",
@@ -64,7 +91,7 @@ export const formContent = {
 // RESUME SECTION
 // ============================================
 
-export const resumeContent = {
+export const resumeContent: ResumeContent = {
   downloadButton: "Download Resume (PDF)",
 };
 
@@ -72,18 +99,13 @@ export const resumeContent = {
 // FOOTER CONTENT
 // ============================================
 
-export const footerContent = {
+export const footerContent: FooterContent = {
   tagline: "Dedicated to continuous growth and building technology solutions that matter. Let's create something great together.",
 };
 
 // ============================================
 // SKILLS DATA
 // ============================================
-
-export interface SkillCategory {
-  title: string;
-  skills: string[];
-}
 
 export const skillCategories: SkillCategory[] = [
   {
@@ -112,53 +134,39 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
-// Mapping of skills to their Simple Icons slugs
-export const skillIconSlugs: Record<string, string> = {
-  Java: "java",
-  Python: "python",
-  "C++": "cplusplus",
-  JavaScript: "javascript",
-  TypeScript: "typescript",
-  PHP: "php",
-  HTML5: "html5",
-  CSS3: "css3",
-  React: "react",
-  "Node.js": "nodedotjs",
-  "Tailwind CSS": "tailwindcss",
-  Bootstrap: "bootstrap",
-  MySQL: "mysql",
-  PostgreSQL: "postgresql",
-  MongoDB: "mongodb",
-  Firebase: "firebase",
-  Git: "git",
-  GitHub: "github",
-  "VS Code": "visualstudiocode",
-  Figma: "figma",
-  Postman: "postman",
-  Docker: "docker",
-  Jira: "jira",
-  Windows: "windows",
-  "Linux (Ubuntu)": "linux",
-  macOS: "apple",
+// Mapping of skills to their icon components (no external CDN requests)
+export const skillIcons: Record<string, IconType> = {
+  Java: LuFileCode,
+  Python: SiPython,
+  "C++": SiCplusplus,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  PHP: SiPhp,
+  HTML5: SiHtml5,
+  CSS3: SiCss3,
+  React: SiReact,
+  "Node.js": SiNodedotjs,
+  "Tailwind CSS": SiTailwindcss,
+  Bootstrap: SiBootstrap,
+  MySQL: SiMysql,
+  PostgreSQL: SiPostgresql,
+  MongoDB: SiMongodb,
+  Firebase: SiFirebase,
+  Git: SiGit,
+  GitHub: SiGithub,
+  "VS Code": LuCode,
+  Figma: SiFigma,
+  Postman: SiPostman,
+  Docker: SiDocker,
+  Jira: SiJira,
+  Windows: LuMonitor,
+  "Linux (Ubuntu)": SiLinux,
+  macOS: SiApple,
 };
 
 // ============================================
 // PROJECTS DATA
 // ============================================
-
-export interface Project {
-  title: string;
-  desc: string;
-  problem: string;
-  tech: string[];
-  role: string;
-  features: string[];
-  learned: string;
-  category: "Web" | "Desktop" | "Educational" | "Other";
-  demoUrl: string;
-  githubUrl: string;
-  image: string;
-}
 
 export const projects: Project[] = [
   {
@@ -215,10 +223,10 @@ export const projects: Project[] = [
   },
 ];
 
-export const projectFilters = ["All", "Web", "Desktop", "Other"];
+export const projectFilters: ProjectFilter[] = ["All", "Web", "Desktop", "Other"];
 
 // Project section content
-export const projectContent = {
+export const projectContent: ProjectContent = {
   details: "Details",
   less: "Less",
   liveDemo: "Live Demo",
@@ -233,13 +241,6 @@ export const projectContent = {
 // ============================================
 // EXPERIENCE DATA
 // ============================================
-
-export interface ExperienceItem {
-  title: string;
-  date: string;
-  desc: string;
-  icon?: string;
-}
 
 export const experienceTimeline: ExperienceItem[] = [
   {
@@ -277,13 +278,6 @@ export const experienceTimeline: ExperienceItem[] = [
 // ============================================
 // ACHIEVEMENTS DATA
 // ============================================
-
-export interface Achievement {
-  title: string;
-  desc: string;
-  date: string;
-  icon?: string;
-}
 
 export const achievements: Achievement[] = [
   {
@@ -328,12 +322,6 @@ export const achievements: Achievement[] = [
 // ABOUT SECTION DATA
 // ============================================
 
-export interface Strength {
-  title: string;
-  desc: string;
-  icon?: string;
-}
-
 export const strengths: Strength[] = [
   { title: "Problem Solver", desc: "Analytical thinker who thrives on breaking down complex challenges.", icon: "Target" },
   { title: "Continuous Learner", desc: "Always exploring new technologies and methodologies.", icon: "Lightbulb" },
@@ -341,7 +329,7 @@ export const strengths: Strength[] = [
   { title: "Detail-Oriented", desc: "Meticulous approach to code quality and documentation.", icon: "GraduationCap" },
 ];
 
-export const aboutContent = {
+export const aboutContent: AboutContent = {
   introduction: `I am a recent Bachelor of Science in Information Technology graduate with a strong foundation in software development, web technologies, and IT systems. I am passionate about leveraging technology to solve real-world problems and deliver impactful solutions.`,
   background: `My academic journey equipped me with hands-on experience in full-stack development, database management, and system analysis. I am eager to contribute to a dynamic team where I can apply my skills, grow professionally, and make a meaningful impact.`,
   education: {
@@ -355,11 +343,6 @@ export const aboutContent = {
 // RESUME HIGHLIGHTS DATA
 // ============================================
 
-export interface ResumeHighlight {
-  label: string;
-  value: string;
-}
-
 export const resumeHighlights: ResumeHighlight[] = [
   { label: "BSIT Graduate", value: "2024" },
   { label: "Technologies", value: "20+" },
@@ -371,11 +354,6 @@ export const resumeHighlights: ResumeHighlight[] = [
 // CONTACT DATA
 // ============================================
 
-export interface ContactInfo {
-  label: string;
-  href: string;
-}
-
 export const contactInfo: ContactInfo[] = [
   { label: personalInfo.email, href: `mailto:${personalInfo.email}` },
   { label: personalInfo.phone, href: `tel:${personalInfo.phone}` },
@@ -384,7 +362,7 @@ export const contactInfo: ContactInfo[] = [
   { label: personalInfo.website, href: "#" },
 ];
 
-export const socialLinks = [
+export const socialLinks: SocialLink[] = [
   { name: "GitHub", href: personalInfo.github, icon: "Github" },
   { name: "LinkedIn", href: `https://${personalInfo.linkedin}`, icon: "Linkedin" },
   { name: "Email", href: `mailto:${personalInfo.email}`, icon: "Mail" },
@@ -393,11 +371,6 @@ export const socialLinks = [
 // ============================================
 // NAVIGATION DATA
 // ============================================
-
-export interface NavLink {
-  label: string;
-  href: string;
-}
 
 export const navLinks: NavLink[] = [
   { label: "About", href: "#about" },

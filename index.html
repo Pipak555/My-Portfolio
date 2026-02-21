@@ -11,11 +11,27 @@
     <meta property="og:title" content="John Patrick Robles — BSIT Graduate Portfolio" />
     <meta property="og:description" content="Professional portfolio of John Patrick Robles, a BSIT graduate and aspiring software developer." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://johnpatrickrobles.dev" />
+    <meta property="og:site_name" content="John Patrick Robles Portfolio" />
+    <meta property="og:image" content="/og-image.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:site" content="@johnpatrickrobles" />
+    <meta name="twitter:creator" content="@johnpatrickrobles" />
+    <meta name="twitter:title" content="John Patrick Robles — BSIT Graduate Portfolio" />
+    <meta name="twitter:description" content="Professional portfolio of John Patrick Robles, a BSIT graduate and aspiring software developer." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io;" />
+
+    <!-- Theme flash prevention (FOUC) -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
   </head>
 
   <body>

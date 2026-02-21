@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { GraduationCap, Target, Lightbulb, Users } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { strengths as strengthsData, aboutContent, sectionTitles } from "@/data/portfolio-data";
 
 // Icon mapping for strengths
@@ -11,18 +11,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const About = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.2 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
     <section id="about" ref={ref} className="py-20 bg-secondary/30">
-      <div className={`container mx-auto px-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`container mx-auto px-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">{sectionTitles.about}</h2>
         <div className="w-16 h-1 bg-primary mx-auto mb-12 rounded-full" />
 
@@ -42,7 +35,7 @@ const About = () => {
               <div
                 key={s.title}
                 className={`bg-card border border-border rounded-xl p-6 text-center hover:border-primary/50 hover:shadow-lg transition-all duration-500 ${
-                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 }`}
                 style={{ transitionDelay: `${i * 100 + 200}ms` }}
               >

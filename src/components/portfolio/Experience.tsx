@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Briefcase, BookOpen, Award, Users } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { experienceTimeline, sectionTitles } from "@/data/portfolio-data";
 
 // Icon mapping for experience timeline
@@ -11,18 +11,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const Experience = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold: 0.15 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
 
   return (
     <section id="experience" ref={ref} className="py-20">
-      <div className={`container mx-auto px-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`container mx-auto px-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">{sectionTitles.experience}</h2>
         <div className="w-16 h-1 bg-primary mx-auto mb-12 rounded-full" />
 
@@ -36,8 +29,8 @@ const Experience = () => {
               return (
                 <div
                   key={i}
-                  className={`relative pl-16 transition-all duration-500 ${
-                    visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+                className={`relative pl-16 transition-all duration-500 ${
+                    isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
                   }`}
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
