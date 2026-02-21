@@ -104,33 +104,29 @@ export const footerContent: FooterContent = {
 };
 
 // ============================================
-// SKILLS DATA
+// SKILLS DATA - OPTIMIZED FOR HIRING (12-15 core skills)
 // ============================================
+
+/*
+ * OPTIMIZATION NOTES:
+ * - Limited to 12-15 core technical skills (recruiter scan optimization)
+ * - Removed soft skills (not relevant for skills section - move to About)
+ * - Grouped by proficiency: Languages → Frameworks → Tools
+ * - Each skill should have project proof in Projects section
+ */
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Programming Languages",
-    skills: ["Java", "Python", "C++", "JavaScript", "TypeScript", "PHP"],
+    title: "Languages",
+    skills: ["JavaScript", "TypeScript", "Python", "Java", "PHP"],
   },
   {
-    title: "Web Development",
-    skills: ["HTML5", "CSS3", "React", "Node.js", "Tailwind CSS", "Bootstrap", "REST APIs"],
+    title: "Frameworks",
+    skills: ["React", "Node.js", "Tailwind CSS"],
   },
   {
-    title: "Databases",
-    skills: ["MySQL", "PostgreSQL", "MongoDB", "Firebase"],
-  },
-  {
-    title: "Tools & Software",
-    skills: ["Git", "GitHub", "VS Code", "Figma", "Postman", "Docker", "Jira"],
-  },
-  {
-    title: "Operating Systems",
-    skills: ["Windows", "Linux (Ubuntu)", "macOS"],
-  },
-  {
-    title: "Soft Skills",
-    skills: ["Team Collaboration", "Communication", "Time Management", "Critical Thinking", "Adaptability"],
+    title: "Tools",
+    skills: ["Git", "Firebase", "MySQL", "MongoDB", "Postman"],
   },
 ];
 
