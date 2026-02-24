@@ -41,7 +41,7 @@ export const personalInfo: PersonalInfo = {
   linkedin: "www.linkedin.com/in/john-patrick-robles-47174135b",
   github: "https://github.com/Pipak555",
   website: "johnpatrickrobles.dev",
-  profileImage: "src/images/profile.jpg",
+profileImage: "/profile.jpg",
 };
 
 // ============================================
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     category: "Web",
     demoUrl: "https://mojo-dojo-casa-house-80845.web.app/",
     githubUrl: "https://github.com/Pipak555/Pipak555-Mag-cocommit-na-talga",
-    image: "src/images/Mojo.png",
+image: "/Mojo.png",
   },
   {
     title: "Network Monitoring Dashboard",
@@ -215,7 +215,7 @@ export const projects: Project[] = [
     category: "Educational",
     demoUrl: "https://your-demo-url-for-student-handbook.com",
     githubUrl: "https://github.com/Pipak555/Bulacan-State-University-Bustos-Campus-Student-Handbook",
-    image: "src/images/App.png",
+image: "/App.png",
   },
 ];
 
